@@ -17,5 +17,5 @@ function assert_commands {
     done
 }
 
-assert_commands node npm bower grunt yo testacular ruby compass
+assert_commands node npm bower grunt yo karma ruby compass
 npm install && bower install
