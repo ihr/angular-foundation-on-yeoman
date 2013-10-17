@@ -114,3 +114,13 @@ One more thing worth to know about layouts - all should be handled by `LayoutCtr
 
 Controller to handle final partials should be set the same way, inline in those
 partials.
+
+### Running Vert.x server
+
+In app/server folder you will find a server.js which you can execut via:
+
+    vertx run server.js
+
+Note that you need at least Java 7 and vert.x which you can install via:
+
+    brew install vert.x

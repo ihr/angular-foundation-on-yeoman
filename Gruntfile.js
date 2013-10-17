@@ -1,4 +1,5 @@
 'use strict';
+var proxySnippet = require('grunt-connect-proxy/lib/utils').proxyRequest ;
 var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
 var mountFolder = function (connect, dir) {
     return connect.static(require('path').resolve(dir));
@@ -49,10 +50,20 @@ module.exports = function (grunt) {
                 // Change this to '0.0.0.0' to access the server from outside.
                 hostname: 'localhost'
             },
+            proxies: [
+                {
+                    context: '/rest',
+                    host: 'localhost',
+                    port: 8080,
+                    https: false,
+                    changeOrigin: false
+                }
+            ],
             livereload: {
                 options: {
                     middleware: function (connect) {
                         return [
+                            proxySnippet,
                             lrSnippet,
                             mountFolder(connect, '.tmp'),
                             mountFolder(connect, yeomanConfig.app)
@@ -225,7 +236,7 @@ module.exports = function (grunt) {
                 files: {
                     '<%= yeoman.dist %>/scripts/scripts.js': [
                         '<%= yeoman.dist %>/scripts/scripts.js'
-                    ],
+                    ]
                 }
             }
         },
@@ -265,6 +276,7 @@ module.exports = function (grunt) {
         'clean:server',
         'coffee:dist',
         'compass:server',
+        'configureProxies',
         'livereload-start',
         'connect:livereload',
         'open',

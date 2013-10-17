@@ -2,12 +2,14 @@
   <div class="in">
     <h1 t="Sup {{userName}}!">Hello example!</h1>
     <p t="There's {} things installed." count="awesomeThings.length">There's few things installed.</p>
+    <p t="Server response {{serverData}}">server data</p>
 
     <div class="tagline">
       <span t="Installed modules">Installed modules</span>:
       <ul>
         <li ng-repeat="thing in awesomeThings">{{thing}}</li>
       </ul>
+
       <span t="Enjoy it!">Enjoy it!</span>
     </div>
   </div>
